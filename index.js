@@ -1,3 +1,5 @@
+require('dotenv').config();
+const pug = require('pug');
 const express = require('express');
 const axios = require('axios');
 const app = express();
@@ -8,11 +10,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // * Please DO NOT INCLUDE the private app access token in your repo. Don't do this practicum in your normal account.
-const PRIVATE_APP_ACCESS = '';
+const PRIVATE_APP_ACCESS = process.env.HUBSPOT_PRIVATE_APP;
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
-// * Code for Route 1 goes here
+
+
+app.get("/", async(req, res) =>{
+    const headers = {
+        'authorization': `Bearer ${PRIVATE_APP_ACCESS}`
+    }
+    let pets = await axios.get("https://api.hubapi.com/crm/v3/objects/pets", {headers});
+    let data = pets.data.results
+    try{
+        res.json(data)
+    }catch(error){
+        console.log(error)
+    }
+})
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
