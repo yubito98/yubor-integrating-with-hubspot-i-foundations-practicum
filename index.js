@@ -22,9 +22,8 @@ const headers = {
 
 app.get("/", async(req, res) =>{
     try{
-        let transactions = await axios.get("https://api.hubapi.com/crm/v3/objects/transactions?properties=name", {headers});
+        let transactions = await axios.get("https://api.hubapi.com/crm/v3/objects/transactions?properties=name,notes,value", {headers});
         let data = transactions.data.results;
-        //res.json(data)
         res.render("homepage", {data})
     }catch(error){
         console.log(error)
@@ -49,10 +48,9 @@ app.post("/update-cobj", async(req, res) =>{
                 value: value
             }
         }
-    const endpoint = "https://api.hubapi.com/crm/v3/objects/transactions"
-        const response = await axios.post(endpoint,body, {headers})
-        const data = response.data;
-        res.json(data);
+        const endpoint = "https://api.hubapi.com/crm/v3/objects/transactions"
+        const response = await axios.post(endpoint, body, {headers});
+        res.redirect("/");
     }catch(error){
         console.log(error)
     }

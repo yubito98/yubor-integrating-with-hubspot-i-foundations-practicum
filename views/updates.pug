@@ -8,15 +8,15 @@ html
     h1 Create Records
     a(href="/") Return to the homepage
 
-    form(action="/submit-form" method="POST")
+    form(action="/update-cobj" method="POST")
       div
-        label(for="gameName") Name:
-        input#gameName(type="text" name="name" required)
+        label Name:
+        input(type="text" name="name" required)
       div
-        label(for="notes") Notes:
-        input#notes(type="text" name="notes" required)
+        label Notes:
+        input(type="text" name="notes" required)
       div
-        label(for="price") Value:
-        input#price(type="number" name="value" required)
+        label Value:
+        input(type="number" name="value" required)
       div
         button(type="submit") Submit

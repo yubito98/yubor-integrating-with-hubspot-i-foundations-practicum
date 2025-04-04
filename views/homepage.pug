@@ -35,9 +35,13 @@ html
         tr
           th Id
           th Name
+          th Notes
+          th Value
 
       tbody
         each item in data
           tr
             td= item.properties.hs_object_id
             td= item.properties.name
+            td= item.properties.notes
+            td= item.properties.value
