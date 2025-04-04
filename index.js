@@ -11,15 +11,15 @@ app.use(express.json());
 
 const PRIVATE_APP_ACCESS = process.env.HUBSPOT_PRIVATE_APP;
 
+const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${PRIVATE_APP_ACCESS}`
+}
+
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 
-
 app.get("/", async(req, res) =>{
-    const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${PRIVATE_APP_ACCESS}`
-    }
     let pets = await axios.get("https://api.hubapi.com/crm/v3/objects/transactions", {headers});
     let data = pets.data.results
     try{
@@ -30,12 +30,25 @@ app.get("/", async(req, res) =>{
 })
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
+app.get("/update-cobj", async(req, res) =>{
 
-// * Code for Route 2 goes here
+    try{
+  
+    }catch(error){
+        console.log(error)
+    }
+})
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
-// * Code for Route 3 goes here
+app.post("/update-cobj", async(req, res) =>{
+  
+    try{
+        res.json(data)
+    }catch(error){
+        console.log(error)
+    }
+})
 
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 
