@@ -1,21 +1,20 @@
-
-
 doctype html
 html 
-    head 
-         title Update Custom Object Form | Integrating With HubSpot I Practicum.
-         meta(name="viewport" content="width=device-width, initial-scale=1")
-         link(rel="stylesheet", href="/css/style.css")
-    body    
-         h1 Create Records
-         a(href="/") Return to the homepage
-         form(action="/submit-form" method="POST")
+  head 
+    title Update Custom Object Form | Integrating With HubSpot I Practicum.
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+  body    
+    h1 Create Records
+    a(href="/") Return to the homepage
+
+    form(action="/submit-form" method="POST")
       div
         label(for="gameName") Name:
         input#gameName(type="text" name="name" required)
-              div
-        label(for="gameName") Notes:
-        input#gameName(type="text" name="notes" required)
+      div
+        label(for="notes") Notes:
+        input#notes(type="text" name="notes" required)
       div
         label(for="price") Value:
         input#price(type="number" name="value" required)
