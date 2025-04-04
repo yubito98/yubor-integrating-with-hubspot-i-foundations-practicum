@@ -2,6 +2,7 @@ const pug = require('pug');
 const express = require('express');
 const axios = require('axios');
 const app = express();
+require('dotenv').config();
 
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
