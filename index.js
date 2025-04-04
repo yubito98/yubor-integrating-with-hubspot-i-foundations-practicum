@@ -21,10 +21,11 @@ const headers = {
 
 
 app.get("/", async(req, res) =>{
-    let pets = await axios.get("https://api.hubapi.com/crm/v3/objects/transactions", {headers});
-    let data = pets.data.results
     try{
-        res.json(data)
+        let transactions = await axios.get("https://api.hubapi.com/crm/v3/objects/transactions?properties=name", {headers});
+        let data = transactions.data.results;
+        //res.json(data)
+        res.render("homepage", {data})
     }catch(error){
         console.log(error)
     }
@@ -40,7 +41,11 @@ app.get("/update-cobj", async(req, res) =>{
 app.post("/update-cobj", async(req, res) =>{
   
     try{
-        res.json(data)
+    const body = req.body;
+    const endpoint = "https://api.hubapi.com/crm/v3/objects/transactions"
+        const response = await axios.post(endpoint,body, {headers})
+        const data = response.data;
+        res.json(data);
     }catch(error){
         console.log(error)
     }
