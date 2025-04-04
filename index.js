@@ -39,9 +39,16 @@ app.get("/update-cobj", async(req, res) =>{
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 app.post("/update-cobj", async(req, res) =>{
-  
     try{
-    const body = req.body;
+        const {name, notes, value} = req.body;
+
+        const body = {
+            properties:{
+                name: name,
+                notes: notes,
+                value: value
+            }
+        }
     const endpoint = "https://api.hubapi.com/crm/v3/objects/transactions"
         const response = await axios.post(endpoint,body, {headers})
         const data = response.data;
